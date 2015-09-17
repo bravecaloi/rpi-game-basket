@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="app/lib/jquery-2.1.4.min.js" charset="utf-8"></script>
+    <meta charset="utf-8">
+    <title>emulates rpi</title>
+
+    <style media="screen">
+      .trigger{
+        float: left;
+        padding: 30px;
+        border: 1px solid #333;
+        background-color: rgb(172, 82, 204);
+        color: #fff;
+      }
+      .trigger:hover{
+        cursor: pointer;
+        background-color: rgb(163, 42, 207);
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <div class="trigger" id="0">0</div>
+    <div class="trigger" id="1">1</div>
+    <div class="trigger" id="2">2</div>
+    <div class="trigger" id="3">3</div>
+    <div class="trigger" id="4">4</div>
+    <div class="trigger" id="5">5</div>
+    <div class="trigger" id="6">6</div>
+    <div class="trigger" id="7">7</div>
+    <div class="trigger" id="8">8</div>
+    <div class="trigger" id="9">9</div>
+    <div class="trigger" id="10">10</div>
+    <div class="trigger" id="11">11</div>
+
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var server = "localhost:2323";
+        // var server = "192.168.0.103:2323";
+
+        $( document ).keypress(function(e) {
+          if(e.keyCode >= 49 && e.keyCode <= 60 ){
+            $.ajax({
+              dataType: "json",
+              url: "http:"+server+"/touched/" + (e.keyCode - 49),
+              success: function(res){ console.log(res); }
+            });
+          }
+        });
+
+
+        $('.trigger').click(function(e){
+          var num = e.target.id;
+          $.ajax({
+            dataType: "json",
+            url: "http:"+server+"/touched/" + num,
+            success: function(res){ console.log(res); }
+          });
+        });
+
+
+
+      });
+
+    </script>
+
+
+
+  </body>
+</html>

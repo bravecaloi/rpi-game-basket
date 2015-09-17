@@ -1,0 +1,393 @@
+//
+// general STYLES
+// --------------------------------------------------
+
+body{
+	margin: 0;
+	padding: 0;
+	color: @textColor;
+	background-color: @bodyBackground;
+	font-family: @font;
+	font-weight: 300;
+}
+
+.box{
+	width: @box;
+	margin: 0 auto;
+	position: relative;
+}
+.clearfix {
+	height: 0;
+	line-height: 0;
+	font-size: 0;
+	clear: both;
+}
+html[xmlns] .clearfix {
+	display: block;
+}
+* html .clearfix {
+	height: 1%;
+}
+a{
+    -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+a, a:hover, a:active, a:focus{
+   outline: 0;
+}
+img{
+	max-width: 100%;
+	max-height: 100% !important;
+	height: auto !important;
+}
+*, *:before, *:after {
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;
+}
+//
+// FONTS
+// --------------------------------------------------
+
+
+
+
+//
+// STYLES
+// --------------------------------------------------
+body{
+	height: 100vh;
+	width: 100%;
+	position: relative;
+}
+#main{
+	width: 1920px;
+	height: 1080px;
+	overflow: hidden;
+	position: relative;
+	display: block;
+	background: url(../images/bg.jpg) 0 0 no-repeat #ba6913;
+	transform: scale(0.666667, 0.6666667);
+  	transform-origin: 0 0;
+  	.win_player01{
+  		width: 100%;
+  		height: 100%;
+  		background: url(../images/ganaste01.png) 70px 70px no-repeat rgba(0,0,0,0.6);
+  		z-index: 100000;
+  		position: absolute;
+  		visibility: hidden;
+  	}
+  	.win_player02{
+  		width: 100%;
+  		height: 100%;
+  		background: url(../images/ganaste02.png) 950px 70px no-repeat rgba(0,0,0,0.6);
+  		z-index: 100001;
+  		position: absolute;
+  		visibility: hidden;
+  	}
+	.col_player{
+		width: 50%;
+		position: relative;
+		vertical-align: top;
+		display: block;
+		float: left;
+		height: 100%;
+		.col_info{
+			width: 200px;
+			float: left;
+			position: relative;
+			text-align: right;
+			padding: 160px 0 0 0;
+			.player{
+				position: absolute;
+				top: 20px;
+				left: 00px;
+				width: 332px;
+				height: 204px;
+				z-index: 1000;
+				-webkit-animation-duration: 10s;
+				-moz-animation-duration: 10s;
+			}
+			.score{
+				.fruits, .lives{
+					line-height: 44px;
+					font-size: 12px;
+					color: #521403;
+					text-align: left;
+					padding-left: 58px;
+					span{
+						background-color: #ef0000;
+						color: #fff;
+						display: inline-block;
+						width: 44px;
+						height: 44px;
+						margin: 0 10px 10px 0;
+						text-align: center;
+						-webkit-border-radius: 50%;
+						-moz-border-radius: 50%;
+						border-radius: 50%;
+						-webkit-box-shadow: 5px 5px 10px 0px rgba(50, 50, 50, 0.5);
+						-moz-box-shadow:    5px 5px 10px 0px rgba(50, 50, 50, 0.5);
+						box-shadow:         5px 5px 10px 0px rgba(50, 50, 50, 0.5);
+					}
+				}
+				.lives{
+					span{
+						background-color: #ff6600;
+					}
+				}
+			}
+			.full_score{
+				left: 40px;
+				top: 340px;
+				width: 140px;
+				position: absolute;
+				text-align: center;
+				span{
+					-webkit-border-radius: 45px;
+						-moz-border-radius: 45px;
+						border-radius: 45px;
+					background-color: #ef0000;
+					font-size: 18px;
+					color: #fff;
+					padding: 0 10px;
+					line-height: 42px;
+					display: inline-block;
+				}
+				strong{
+					text-shadow: 2px 2px 5px rgba(50, 50, 50, 0.5);
+					display: block;
+				}
+			}
+			.winning{
+				top: 520px;
+				left: -40px;
+				width: 222px;
+				height: 197px;
+				position: absolute;
+			}
+			.yes{
+				background: url(../images/winning01.png) 0 0 no-repeat;
+			}
+			.hand{
+				top: 790px;
+				left: 20px;
+				width: 150px;
+				height: 134px;
+				position: absolute;
+				background: url(../images/hand01.png) 0 0 no-repeat;
+				-webkit-animation-duration: 10s;
+				-moz-animation-duration: 10s;
+			}
+		}
+		.col_game{
+			float: left;
+			width: 640px;
+			height: 100%;
+			.colfruit{
+				position: relative;
+				width: 25%;
+				float: left;
+				height: 100%;
+				min-height: 200px;
+			}
+			.fruit{
+				height: 138px;
+				width: 100%;
+				position: absolute;
+				left: 0;
+				background-position: center !important;
+			}
+			.col01{
+				.fruit{
+					background: url(../images/apple.png) no-repeat;
+				}
+				.basket{
+					span{
+						background: url(../images/small-apple.png) no-repeat;
+					}
+				}
+			}
+			.col02{
+				.fruit{
+					background: url(../images/green-apple.png) no-repeat;
+				}
+				.basket{
+					span{
+						background: url(../images/small-green-apple.png) no-repeat;
+					}
+				}
+			}
+			.col03{
+				.fruit{
+					background: url(../images/orange.png) no-repeat;
+				}
+				.basket{
+					span{
+						background: url(../images/small-orange.png) no-repeat;
+					}
+				}
+			}
+			.col04{
+				.fruit{
+					background: url(../images/pear.png) no-repeat;
+				}
+				.basket{
+					span{
+						background: url(../images/small-pear.png) no-repeat;
+					}
+				}
+			}
+			.basket{
+				height: 272px;
+				width: 283px;
+				position: absolute;
+				left: -55px;
+				top: 750px;
+				background: url(../images/basket.png) left top no-repeat;
+				-webkit-transition: all 0.0s ease-in-out;
+				  -moz-transition: all 0.0s ease-in-out;
+				  -o-transition: all 0.0s ease-in-out;
+				  transition: all 0.0s ease-in-out;
+				span{
+					height: 82px;
+					width: 60px;
+					margin: 80px 0 0 100px;
+					display: block;
+					text-align: center;
+					background-position: center !important;
+				}
+				&:hover, &.active{
+					background-position: left bottom !important;
+				}
+			}
+		}
+	}
+	#player01{
+		.player{
+			background: url(../images/player01.png) 0 0 no-repeat;
+		}
+	}
+	#player02{
+		.player{
+			background: url(../images/player02.png) 0 0 no-repeat;
+		}
+		.col_info{
+			float: right;
+			.player{
+				right: -30px;
+				left: auto;
+			}
+			.score{
+				.fruits, .lives{
+					padding: 0 0 0 10px;
+				}
+			}
+			.full_score{
+				left: 5px;
+				right: auto;
+			}
+			.winning{
+				right: -40px;
+				left: auto;
+			}
+			.yes{
+				background: url(../images/winning02.png) 0 0 no-repeat;
+			}
+			.hand{
+				background: url(../images/hand02.png) 0 0 no-repeat;
+			}
+		}
+		.col_game{
+			float: right;
+		}
+	}
+	.logo_carta{
+		width: 433px;
+		height: 433px;
+		background: url(../images/bariloche-carta.png) 0 0 no-repeat;
+		display: block;
+		position: absolute;
+		top: 30px;
+		left: 50%;
+		margin: 0 0 0 -215px;
+		z-index: 1000;
+		-webkit-animation-duration: 20s;
+		-moz-animation-duration: 20s;
+	}
+	footer{
+		z-index: 1000;
+		background: url(../images/woodtop.png) bottom left no-repeat;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		height: 164px;
+		width: 100%;
+		.logo{
+			-webkit-animation-duration: 6s;
+			-moz-animation-duration: 6s;
+			position: absolute;
+			bottom: -150px;
+			left: 50%;
+			width: 340px;
+			height: 343px;
+			margin: 0 0 0 -75px;
+			background: url(../images/logo.png) top center no-repeat;
+		}
+		.col_game{
+			float: left;
+			width: 640px;
+			height: 100%;
+			margin: 110px 0 0 200px;
+			.colscore{
+				position: relative;
+				width: 25%;
+				float: left;
+				height: 100%;
+				min-height: 200px;
+				text-align: center;
+				font-size: 22px;
+				text-shadow: 2px 2px 5px rgba(50, 50, 50, 0.9);
+			}
+			.col01{
+				color: #ff0000;
+			}
+			.col02{
+				color: #b0f451;
+			}
+			.col03{
+				color: #ff6600;
+			}
+			.col04{
+				color: #dce122;
+			}
+		}
+		.player02{
+			float: right;
+			margin: 110px 200px 0 0px;
+		}
+		.logojuego{
+			width: 247px;
+			height: 144px;
+			background: url(../images/logo.png) 0 0 no-repeat;
+			display: block;
+			position: absolute;
+			top: 20px;
+			left: 50%;
+			margin: 0 0 0 -124px;
+			z-index: 1000;
+			-webkit-animation-duration: 20s;
+			-moz-animation-duration: 20s;
+		}
+	}
+}
+#splash{
+  width: 1920px;
+  height: 1080px;
+  display: block;
+  background: url(../images/splash.jpg) 0 0 no-repeat;
+  transform: scale(0.666667, 0.6666667);
+  transform-origin: 0 0;
+}

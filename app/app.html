@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Juego">
+  <meta name="author" content="Animus">
+
+	<!-- styles -->
+  <link href="css/animate.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+
+	<!-- libs  -->
+	<script src="lib/angular.min.js" charset="utf-8"></script>
+
+	<!-- front-end controllers  -->
+	<script src="js/GameAppInitializer.js" charset="utf-8"></script>
+	<script src="js/GameController.js" charset="utf-8"></script>
+	<script src="js/FruitService.js" charset="utf-8"></script>
+	<script src="js/NotificationsService.js" charset="utf-8"></script>
+
+
+	<!-- node.js webserver -->
+	<script src="js/GameServer.js" charset="utf-8"></script>
+	<script>
+		// This enables to run it in a browser or nwjs
+		var global = global || { 'nwjs': false };
+
+		if(global.nwjs != false){
+			global.window = window;
+			global.gui = require('nw.gui');
+			game.startServer();
+		}
+	</script>
+	<title>Tormenta de Frutas</title>
+</head>
+<body>
+	<div id="main">
+		<div class="win_player01"></div>
+		<div class="win_player02"></div>
+		<div id="player01" class="col_player">
+			<div class="col_info">
+				<div class="player animated shake infinite"></div>
+				<div class="score">
+					<div class="fruits">
+						<span>30</span> Frutas
+					</div>
+					<div class="lives">
+						<span>3</span> Vidas
+					</div>
+				</div>
+				<div class="full_score">
+					<span>30.000</span>
+					<strong>Puntos</strong>
+				</div>
+				<div class="winning yes animated bounceInLeft"></div>
+				<div class="hand animated wobble infinite"></div>
+			</div>
+			<div class="col_game">
+				<div class="col01 colfruit">
+					<div class="fruit" style="top:50px;"></div>
+					<div class="fruit" style="top:420px;"></div>
+					<a href="#" class="basket active"><span></span></a>
+				</div>
+				<div class="col02 colfruit">
+					<div class="fruit" style="top:10px;"></div>
+					<div class="fruit" style="top:620px;"></div>
+					<a href="#" class="basket "><span></span></a>
+				</div>
+				<div class="col03 colfruit">
+					<div class="fruit" style="top:120px;"></div>
+					<div class="fruit" style="top:435px;"></div>
+					<a href="#" class="basket "><span></span></a>
+				</div>
+				<div class="col04 colfruit">
+					<div class="fruit" style="top:120px;"></div>
+					<div class="fruit" style="top:570px;"></div>
+					<a href="#" class="basket "><span></span></a>
+				</div>
+			</div>
+		</div>
+
+		<div id="player02" class="col_player">
+			<div class="col_info">
+				<div class="player animated shake infinite"></div>
+				<div class="score">
+					<div class="fruits">
+						<span>30</span> Frutas
+					</div>
+					<div class="lives">
+						<span>3</span> Vidas
+					</div>
+				</div>
+				<div class="full_score">
+					<span>30.000</span>
+					<strong>Puntos</strong>
+				</div>
+				<div class="winning animated bounceInRight"></div>
+				<div class="hand animated wobble infinite"></div>
+			</div>
+			<div class="col_game">
+				<div class="col01 colfruit">
+					<div class="fruit" style="top:50px;"></div>
+					<div class="fruit" style="top:420px;"></div>
+					<a href="#" class="basket active"><span></span></a>
+				</div>
+				<div class="col02 colfruit">
+					<div class="fruit" style="top:10px;"></div>
+					<div class="fruit" style="top:620px;"></div>
+					<a href="#" class="basket "><span></span></a>
+				</div>
+				<div class="col03 colfruit">
+					<div class="fruit" style="top:120px;"></div>
+					<div class="fruit" style="top:435px;"></div>
+					<a href="#" class="basket "><span></span></a>
+				</div>
+				<div class="col04 colfruit">
+					<div class="fruit" style="top:120px;"></div>
+					<div class="fruit" style="top:570px;"></div>
+					<a href="#" class="basket "><span></span></a>
+				</div>
+			</div>
+		</div>
+		<div class="logo_carta animated swing infinite"></div>
+
+		<footer class="animated slideInUp">
+			<div class="col_game player01">
+				<div class="col01 colscore">
+					<div class="score">1000</div>
+				</div>
+				<div class="col02 colscore">
+					<div class="score">1000</div>
+				</div>
+				<div class="col03 colscore">
+					<div class="score">1000</div>
+				</div>
+				<div class="col04 colscore">
+					<div class="score">X</div>
+				</div>
+			</div>
+			<div class="col_game player02">
+				<div class="col01 colscore">
+					<div class="score">1000</div>
+				</div>
+				<div class="col02 colscore">
+					<div class="score">1000</div>
+				</div>
+				<div class="col03 colscore">
+					<div class="score">1000</div>
+				</div>
+				<div class="col04 colscore">
+					<div class="score">1000</div>
+				</div>
+			</div>
+			<div class="logojuego"></div>
+		</footer>
+	</div>
+	<script src="js/vendor/jquery-1.11.0.min.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>

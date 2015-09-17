@@ -1,0 +1,530 @@
+@font-face {
+  font-family: 'boomerang_typeregular';
+  src: url('../fonts/boomerang_3.0-webfont.eot');
+  src: url('../fonts/boomerang_3.0-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/boomerang_3.0-webfont.woff') format('woff'), url('../fonts/boomerang_3.0-webfont.ttf') format('truetype'), url('../fonts/boomerang_3.0-webfont.svg#boomerang_typeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+  display: block;
+}
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+audio:not([controls]) {
+  display: none;
+}
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+a:hover,
+a:active {
+  outline: 0;
+}
+sub,
+sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+img {
+  /* Responsive images (ensure images don't scale beyond their parents) */
+
+  max-width: 100%;
+  /* Part 1: Set a maxium relative to the parent */
+
+  width: auto\9;
+  /* IE7-8 need help adjusting responsive images */
+
+  height: auto;
+  /* Part 2: Scale the height according to the width, otherwise you get stretching */
+
+  vertical-align: middle;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+#map_canvas img,
+.google-maps img {
+  max-width: none;
+}
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  font-size: 100%;
+  vertical-align: middle;
+}
+button,
+input {
+  *overflow: visible;
+  line-height: normal;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+label,
+select,
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+input[type="radio"],
+input[type="checkbox"] {
+  cursor: pointer;
+}
+input[type="search"] {
+  -webkit-appearance: textfield;
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+textarea {
+  overflow: auto;
+  vertical-align: top;
+}
+@media print {
+  * {
+    text-shadow: none !important;
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+body {
+  margin: 0;
+  padding: 0;
+  color: #ffecd6;
+  background-color: #e2e9a1;
+  font-family: 'boomerang_typeregular', sans-serif;
+  font-weight: 300;
+}
+.box {
+  width: 1095px;
+  margin: 0 auto;
+  position: relative;
+}
+.clearfix {
+  height: 0;
+  line-height: 0;
+  font-size: 0;
+  clear: both;
+}
+html[xmlns] .clearfix {
+  display: block;
+}
+* html .clearfix {
+  height: 1%;
+}
+a {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+a,
+a:hover,
+a:active,
+a:focus {
+  outline: 0;
+}
+img {
+  max-width: 100%;
+  max-height: 100% !important;
+  height: auto !important;
+}
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+#main {
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  position: relative;
+  display: block;
+  background: url(../images/bg.jpg) 0 0 no-repeat #ba6913;
+  transform: scale(0.666667, 0.6666667);
+  transform-origin: 0 0;
+}
+#main .win_player01 {
+  width: 100%;
+  height: 100%;
+  background: url(../images/ganaste01.png) 70px 70px no-repeat rgba(0, 0, 0, 0.6);
+  z-index: 100000;
+  position: absolute;
+  visibility: hidden;
+}
+#main .win_player02 {
+  width: 100%;
+  height: 100%;
+  background: url(../images/ganaste02.png) 950px 70px no-repeat rgba(0, 0, 0, 0.6);
+  z-index: 100001;
+  position: absolute;
+  visibility: hidden;
+}
+#main .col_player {
+  width: 50%;
+  position: relative;
+  vertical-align: top;
+  display: block;
+  float: left;
+  height: 100%;
+}
+#main .col_player .col_info {
+  width: 200px;
+  float: left;
+  position: relative;
+  text-align: right;
+  padding: 160px 0 0 0;
+}
+#main .col_player .col_info .player {
+  position: absolute;
+  top: 20px;
+  left: 00px;
+  width: 332px;
+  height: 204px;
+  z-index: 1000;
+  -webkit-animation-duration: 10s;
+  -moz-animation-duration: 10s;
+}
+#main .col_player .col_info .score .fruits,
+#main .col_player .col_info .score .lives {
+  line-height: 44px;
+  font-size: 12px;
+  color: #521403;
+  text-align: left;
+  padding-left: 58px;
+}
+#main .col_player .col_info .score .fruits span,
+#main .col_player .col_info .score .lives span {
+  background-color: #ef0000;
+  color: #fff;
+  display: inline-block;
+  width: 44px;
+  height: 44px;
+  margin: 0 10px 10px 0;
+  text-align: center;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-box-shadow: 5px 5px 10px 0px rgba(50, 50, 50, 0.5);
+  -moz-box-shadow: 5px 5px 10px 0px rgba(50, 50, 50, 0.5);
+  box-shadow: 5px 5px 10px 0px rgba(50, 50, 50, 0.5);
+}
+#main .col_player .col_info .score .lives span {
+  background-color: #ff6600;
+}
+#main .col_player .col_info .full_score {
+  left: 40px;
+  top: 340px;
+  width: 140px;
+  position: absolute;
+  text-align: center;
+}
+#main .col_player .col_info .full_score span {
+  -webkit-border-radius: 45px;
+  -moz-border-radius: 45px;
+  border-radius: 45px;
+  background-color: #ef0000;
+  font-size: 18px;
+  color: #fff;
+  padding: 0 10px;
+  line-height: 42px;
+  display: inline-block;
+}
+#main .col_player .col_info .full_score strong {
+  text-shadow: 2px 2px 5px rgba(50, 50, 50, 0.5);
+  display: block;
+}
+#main .col_player .col_info .winning {
+  top: 520px;
+  left: -40px;
+  width: 222px;
+  height: 197px;
+  position: absolute;
+}
+#main .col_player .col_info .yes {
+  background: url(../images/winning01.png) 0 0 no-repeat;
+}
+#main .col_player .col_info .hand {
+  top: 790px;
+  left: 20px;
+  width: 150px;
+  height: 134px;
+  position: absolute;
+  background: url(../images/hand01.png) 0 0 no-repeat;
+  -webkit-animation-duration: 10s;
+  -moz-animation-duration: 10s;
+}
+#main .col_player .col_game {
+  float: left;
+  width: 640px;
+  height: 100%;
+}
+#main .col_player .col_game .colfruit {
+  position: relative;
+  width: 25%;
+  float: left;
+  height: 100%;
+  min-height: 200px;
+}
+#main .col_player .col_game .fruit {
+  height: 138px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  background-position: center !important;
+}
+#main .col_player .col_game .col01 .fruit {
+  background: url(../images/apple.png) no-repeat;
+}
+#main .col_player .col_game .col01 .basket span {
+  background: url(../images/small-apple.png) no-repeat;
+}
+#main .col_player .col_game .col02 .fruit {
+  background: url(../images/green-apple.png) no-repeat;
+}
+#main .col_player .col_game .col02 .basket span {
+  background: url(../images/small-green-apple.png) no-repeat;
+}
+#main .col_player .col_game .col03 .fruit {
+  background: url(../images/orange.png) no-repeat;
+}
+#main .col_player .col_game .col03 .basket span {
+  background: url(../images/small-orange.png) no-repeat;
+}
+#main .col_player .col_game .col04 .fruit {
+  background: url(../images/pear.png) no-repeat;
+}
+#main .col_player .col_game .col04 .basket span {
+  background: url(../images/small-pear.png) no-repeat;
+}
+#main .col_player .col_game .basket {
+  height: 272px;
+  width: 283px;
+  position: absolute;
+  left: -55px;
+  top: 750px;
+  background: url(../images/basket.png) left top no-repeat;
+  -webkit-transition: all 0s ease-in-out;
+  -moz-transition: all 0s ease-in-out;
+  -o-transition: all 0s ease-in-out;
+  transition: all 0s ease-in-out;
+}
+#main .col_player .col_game .basket span {
+  height: 82px;
+  width: 60px;
+  margin: 80px 0 0 100px;
+  display: block;
+  text-align: center;
+  background-position: center !important;
+}
+#main .col_player .col_game .basket:hover,
+#main .col_player .col_game .basket.active {
+  background-position: left bottom !important;
+}
+#main #player01 .player {
+  background: url(../images/player01.png) 0 0 no-repeat;
+}
+#main #player02 .player {
+  background: url(../images/player02.png) 0 0 no-repeat;
+}
+#main #player02 .col_info {
+  float: right;
+}
+#main #player02 .col_info .player {
+  right: -30px;
+  left: auto;
+}
+#main #player02 .col_info .score .fruits,
+#main #player02 .col_info .score .lives {
+  padding: 0 0 0 10px;
+}
+#main #player02 .col_info .full_score {
+  left: 5px;
+  right: auto;
+}
+#main #player02 .col_info .winning {
+  right: -40px;
+  left: auto;
+}
+#main #player02 .col_info .yes {
+  background: url(../images/winning02.png) 0 0 no-repeat;
+}
+#main #player02 .col_info .hand {
+  background: url(../images/hand02.png) 0 0 no-repeat;
+}
+#main #player02 .col_game {
+  float: right;
+}
+#main .logo_carta {
+  width: 433px;
+  height: 433px;
+  background: url(../images/bariloche-carta.png) 0 0 no-repeat;
+  display: block;
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  margin: 0 0 0 -215px;
+  z-index: 1000;
+  -webkit-animation-duration: 20s;
+  -moz-animation-duration: 20s;
+}
+#main footer {
+  z-index: 1000;
+  background: url(../images/woodtop.png) bottom left no-repeat;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 164px;
+  width: 100%;
+}
+#main footer .logo {
+  -webkit-animation-duration: 6s;
+  -moz-animation-duration: 6s;
+  position: absolute;
+  bottom: -150px;
+  left: 50%;
+  width: 340px;
+  height: 343px;
+  margin: 0 0 0 -75px;
+  background: url(../images/logo.png) top center no-repeat;
+}
+#main footer .col_game {
+  float: left;
+  width: 640px;
+  height: 100%;
+  margin: 110px 0 0 200px;
+}
+#main footer .col_game .colscore {
+  position: relative;
+  width: 25%;
+  float: left;
+  height: 100%;
+  min-height: 200px;
+  text-align: center;
+  font-size: 22px;
+  text-shadow: 2px 2px 5px rgba(50, 50, 50, 0.9);
+}
+#main footer .col_game .col01 {
+  color: #ff0000;
+}
+#main footer .col_game .col02 {
+  color: #b0f451;
+}
+#main footer .col_game .col03 {
+  color: #ff6600;
+}
+#main footer .col_game .col04 {
+  color: #dce122;
+}
+#main footer .player02 {
+  float: right;
+  margin: 110px 200px 0 0px;
+}
+#main footer .logojuego {
+  width: 247px;
+  height: 144px;
+  background: url(../images/logo.png) 0 0 no-repeat;
+  display: block;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  margin: 0 0 0 -124px;
+  z-index: 1000;
+  -webkit-animation-duration: 20s;
+  -moz-animation-duration: 20s;
+}
+#splash {
+  width: 1920px;
+  height: 1080px;
+  display: block;
+  background: url(../images/splash.jpg) 0 0 no-repeat;
+  transform: scale(0.666667, 0.6666667);
+  transform-origin: 0 0;
+}

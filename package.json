@@ -1,0 +1,25 @@
+{
+  "name": "animus-rpi-game1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bravecaloi/rpi-game-1.git"
+  },
+  "version": "0.0.1",
+  "chromium-args" : "--enable-webgl --ignore-gpu-blacklist",
+  "single-instance": true,
+  "description": "piano game",
+  "main": "app/splash.html",
+  "window": {
+    "toolbar": false,
+    "frame": true,
+    "kiosk": true
+  },
+  "scripts": {
+    "start": "nodewebkit"
+  },
+  "dependencies": {
+    "ejs": "latest",
+    "express": "^4.10.4",
+    "stylus": "^0.49.3"
+  }
+}
