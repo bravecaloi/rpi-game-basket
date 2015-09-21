@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="GameApp" lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,7 +10,6 @@
 	<!-- styles -->
   <link href="css/animate.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-
 
 	<!-- libs  -->
 	<script src="lib/angular.min.js" charset="utf-8"></script>
@@ -36,128 +35,122 @@
 	</script>
 	<title>Tormenta de Frutas</title>
 </head>
-<body>
+<body ng-controller="GameMechanicsController as mechanics">
+
 	<div id="main">
-		<div class="win_player01"></div>
-		<div class="win_player02"></div>
+
+		<div id="win_player01" class="animated pulse infinite"></div>
+		<div id="win_player02" class="animated pulse infinite"></div>
+
 		<div id="player01" class="col_player">
 			<div class="col_info">
-				<div class="player animated shake infinite"></div>
+				<div class="player animated shake "></div>
 				<div class="score">
 					<div class="fruits">
-						<span>30</span> Frutas
-					</div>
-					<div class="lives">
-						<span>3</span> Vidas
+						<span>{{fruitsNumber}}</span> Frutas
 					</div>
 				</div>
 				<div class="full_score">
-					<span>30.000</span>
+					<span id="player0Points">0</span>
 					<strong>Puntos</strong>
 				</div>
 				<div class="winning yes animated bounceInLeft"></div>
-				<div class="hand animated wobble infinite"></div>
+				<div class="hand animated wobble "></div>
 			</div>
+
 			<div class="col_game">
 				<div class="col01 colfruit">
-					<div class="fruit" style="top:50px;"></div>
-					<div class="fruit" style="top:420px;"></div>
-					<a href="#" class="basket active"><span></span></a>
+					<div id="column0"></div>
+					<div id="column0Basket" class="basket animated" ng-click="mechanics.checkFruitsPosition(0)"><span></span></div>
 				</div>
 				<div class="col02 colfruit">
-					<div class="fruit" style="top:10px;"></div>
-					<div class="fruit" style="top:620px;"></div>
-					<a href="#" class="basket "><span></span></a>
+					<div id="column1"></div>
+					<div id="column1Basket" class="basket animated"><span></span></div>
 				</div>
 				<div class="col03 colfruit">
-					<div class="fruit" style="top:120px;"></div>
-					<div class="fruit" style="top:435px;"></div>
-					<a href="#" class="basket "><span></span></a>
+					<div id="column2"></div>
+					<div id="column2Basket" class="basket animated"><span></span></div>
 				</div>
 				<div class="col04 colfruit">
-					<div class="fruit" style="top:120px;"></div>
-					<div class="fruit" style="top:570px;"></div>
-					<a href="#" class="basket "><span></span></a>
+					<div id="column3"></div>
+					<div id="column3Basket" class="basket animated"><span></span></div>
 				</div>
 			</div>
+
 		</div>
 
 		<div id="player02" class="col_player">
 			<div class="col_info">
-				<div class="player animated shake infinite"></div>
+				<div class="player animated shake "></div>
 				<div class="score">
 					<div class="fruits">
-						<span>30</span> Frutas
-					</div>
-					<div class="lives">
-						<span>3</span> Vidas
+						<span>{{fruitsNumber}}</span> Frutas
 					</div>
 				</div>
 				<div class="full_score">
-					<span>30.000</span>
+					<span id="player1Points">0</span>
 					<strong>Puntos</strong>
 				</div>
 				<div class="winning animated bounceInRight"></div>
-				<div class="hand animated wobble infinite"></div>
+				<div class="hand animated wobble "></div>
 			</div>
-			<div class="col_game">
+
+			<div class="col_game" ng-click="mechanics.startSong()">
 				<div class="col01 colfruit">
-					<div class="fruit" style="top:50px;"></div>
-					<div class="fruit" style="top:420px;"></div>
-					<a href="#" class="basket active"><span></span></a>
+					<div id="column4"></div>
+					<div id="column4Basket" class="basket animated"><span></span></div>
 				</div>
 				<div class="col02 colfruit">
-					<div class="fruit" style="top:10px;"></div>
-					<div class="fruit" style="top:620px;"></div>
-					<a href="#" class="basket "><span></span></a>
+					<div id="column5"></div>
+					<div id="column5Basket" class="basket animated"><span></span></div>
 				</div>
 				<div class="col03 colfruit">
-					<div class="fruit" style="top:120px;"></div>
-					<div class="fruit" style="top:435px;"></div>
-					<a href="#" class="basket "><span></span></a>
+					<div id="column6"></div>
+					<div id="column6Basket" class="basket animated"><span></span></div>
 				</div>
 				<div class="col04 colfruit">
-					<div class="fruit" style="top:120px;"></div>
-					<div class="fruit" style="top:570px;"></div>
-					<a href="#" class="basket "><span></span></a>
+					<div id="column7"></div>
+					<div id="column7Basket" class="basket animated"><span></span></div>
 				</div>
 			</div>
+
 		</div>
-		<div class="logo_carta animated swing infinite"></div>
+		<div class="logo_carta animated swing "></div>
 
 		<footer class="animated slideInUp">
+
 			<div class="col_game player01">
 				<div class="col01 colscore">
-					<div class="score">1000</div>
+					<div class="score animated" id="column0Points">0</div>
 				</div>
 				<div class="col02 colscore">
-					<div class="score">1000</div>
+					<div class="score animated" id="column1Points">0</div>
 				</div>
 				<div class="col03 colscore">
-					<div class="score">1000</div>
+					<div class="score animated" id="column2Points">0</div>
 				</div>
 				<div class="col04 colscore">
-					<div class="score">X</div>
+					<div class="score animated" id="column3Points">0</div>
 				</div>
 			</div>
+
 			<div class="col_game player02">
 				<div class="col01 colscore">
-					<div class="score">1000</div>
+					<div class="score animated" id="column4Points">0</div>
 				</div>
 				<div class="col02 colscore">
-					<div class="score">1000</div>
+					<div class="score animated" id="column5Points">0</div>
 				</div>
 				<div class="col03 colscore">
-					<div class="score">1000</div>
+					<div class="score animated" id="column6Points">0</div>
 				</div>
 				<div class="col04 colscore">
-					<div class="score">1000</div>
+					<div class="score animated" id="column7Points">0</div>
 				</div>
 			</div>
+
 			<div class="logojuego"></div>
 		</footer>
 	</div>
-	<script src="js/vendor/jquery-1.11.0.min.js"></script>
-	<script src="js/main.js"></script>
 </body>
 </html>

@@ -1,95 +1,130 @@
 (function() {
   'use strict'
 
+  var DELAY_UNIT_TIME = 1000;
+  var FRUITS_PER_PLAYER = 3;
+  var PLAYERS_NUMEBR = 2;
+  var COLUMNS_PER_PLAYER = 4
+  var PLAYER_0 = 0;
+  var PLAYER_1 = 1;
+
   var app = angular.module(GAME_APP_NAME);
 
   app.controller('GameMechanicsController', function($scope, $timeout, FruitService, NotificationsService) {
     var ctrl = this;
 
-    ctrl.selectedSong = {};
-    ctrl.fruits = [];
+    $scope.fruitsNumber = FRUITS_PER_PLAYER;
 
-    ctrl.fruitsContainer = document.getElementById('song');
-    ctrl.songName = document.getElementById('songName');
-    ctrl.songAuthor = document.getElementById('songAuthor');
+    var columns = [];
 
-    var fruitAnimationEnds = function(fruit){
+    var prepareElements = function(){
+      for (var i = 0; i < PLAYERS_NUMEBR * COLUMNS_PER_PLAYER; i++) {
+        columns.push({
+          elem:   document.getElementById('column' + i ),
+          points: document.getElementById('column' + i +'Points'),
+          basket: document.getElementById('column' + i +'Basket'),
+          fruits: []
+        });
+      }
+    }
+
+    var countGameEnds = 0;
+    var fruitAnimationEnds = function(fruit) {
       fruit.elem.style.webkitAnimationName = '';
       fruit.elem.style['display'] = 'none';
+      countGameEnds++;
 
-      if(fruit.hit == false){
-        NotificationsService.fruitMissed(fruit);
+      if(countGameEnds == PLAYERS_NUMEBR * FRUITS_PER_PLAYER){
+        countGameEnds = 0;
+        NotificationsService.callWinner();
       }
     }
 
-    var createAllFruits = function(){
-      var notes = ctrl.selectedSong.notes.split(' ');
-      var times = ctrl.selectedSong.times.split(' ');
+    var createAllFruits = function() {
+      for (var player = 0; player < PLAYERS_NUMEBR; player++) {
 
-      var delay = 0;
+        for (var i = 0; i < FRUITS_PER_PLAYER; i++) {
+          var column = getRandomColumn(player);
+          var fruit = FruitService.createFruit(i, i, column.elem);
+          column.fruits.push(fruit);
 
-      for (var i = 0; i < notes.length; i++) {
-        delay += Number(times[i]);
-        var fruit = FruitService.createFruit( i, notes[i],  delay );
-        ctrl.fruits.push(fruit);
+          $timeout(function(mFruit) {
+            return function() {
+              FruitService.animateFruit(mFruit, fruitAnimationEnds);
+            };
+          }(fruit), fruit.delay * DELAY_UNIT_TIME);
+        }
+
       }
     }
 
-    var animateAllFruits = function(){
-      for (var i = 0; i < ctrl.fruits.length; i++) {
-        var fruit = ctrl.fruits[i];
-        $timeout(function(mFruit) {
-          return function() {
-            FruitService.animateFruit(mFruit, fruitAnimationEnds);
-          };
-        }(fruit), fruit.delay * DELAY_UNIT_TIME);
-      }
+    function getRandomColumn(player) {
+      var min = player == PLAYER_0 ? 0 : 3;
+      var max = player == PLAYER_0 ? 4 : 7;
+      return columns[Math.floor(Math.random()*(max-min+1)+min)];
     }
 
-    var startSong = function(){
-      ctrl.fruitsContainer.innerHTML = '';
-      ctrl.fruits = [];
+    var resetGame = function() {
+      for (var i = 0; i < columns.length; i++) {
+        columns[i].elem.innerHTML = '';
+        columns[i].fruits = [];
+      }
       NotificationsService.resetPoints();
+    }
 
+    var startSong = function() {
+      resetGame();
       createAllFruits();
-      animateAllFruits();
     }
 
-    $scope.startSongCtrl = startSong;
+    var checkFruitsPosition = function(column) {
+      var fruits = columns[column].fruits;
+      var basket = columns[column].basket;
+      var points = columns[column].points;
 
-    var changeSong = function(position){
-      ctrl.selectedSong = SONGS[position];
-      ctrl.songName.innerHTML = ctrl.selectedSong.name;
-    }
+      animateElementOnce(basket, 'swing');
 
-    var scrollUpSong = function(){
-      var newSong = ctrl.selectedSong.position + 1;
-      changeSong( (newSong == SONGS.length) ? 0 : newSong);
-    }
+      for (var i = 0; i < fruits.length; i++) {
+        var fruit = fruits[i];
 
-    var checkFruitsPosition = function (input){
-      for (var i = 0; i < ctrl.fruits.length; i++) {
-        var fruit = ctrl.fruits[i];
-        if(fruit.tone == TONES[input] && fruit.hit == false && FruitService.overlapsThreshold(fruit.elem)){
-          NotificationsService.fruitHit(fruit);
+        if (fruit.hit == false && FruitService.overlapsThreshold(fruit.elem, basket)) {
+          fruit.hit = true;
+          countGameEnds++;
+          fruit.elem.style['display'] = 'none';
+          NotificationsService.fruitHit(fruit, points, getPlayer(column));
+          animateElementOnce(basket, 'active');
           return;
         }
       }
-      NotificationsService.toneFailed(TONES[input]);
+      NotificationsService.toneFailed(fruit, points);
     }
 
+    function getPlayer(column){
+      if(column < 4){
+        return PLAYER_0;
+      }
+      return PLAYER_1;
+    }
+
+    function animateElementOnce(elem, animation) {
+      elem.classList.add(animation);
+      setTimeout(function() {
+        elem.classList.remove(animation);
+      }, 500);
+    }
 
     /** Interface for the TouchController **/
     global.GameController = {
-      checkFruitsPosition: checkFruitsPosition,
       startSong: startSong,
-      scrollUpSong: scrollUpSong
+      checkFruitsPosition: checkFruitsPosition
     }
 
+    prepareElements();
 
-    // DEFAULT song selected
-    changeSong(DEFAULT_SONG);
-    NotificationsService.changeInstrument(DEFAULT_INSTRUMENT);
+    return {
+      startSong: startSong,
+      checkFruitsPosition: checkFruitsPosition
+    }
   });
 
 })();

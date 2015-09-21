@@ -5,86 +5,75 @@
 
   app.service('NotificationsService', function() {
 
-    var userPoints = 0;
+    var players = [{
+      points: document.getElementById('player0Points'),
+      winner: document.getElementById('win_player01')
+    }, {
+      points: document.getElementById('player1Points'),
+      winner: document.getElementById('win_player02')
+    }]
 
-    var feedbackText = document.getElementById('feedbackText');
-    var pointsCounter = document.getElementById('pointsCounter');
-    var totalPoints = document.getElementById('totalPoints');
-
-    // Instruments
-    var keyInstrument = {
-      7: 'instrumentIcon1',
-      8: 'instrumentIcon2',
-      9: 'instrumentIcon3',
-      10:'instrumentIcon4'
-    };
-    var selectedInstrument;
-
-    function setFeedback(str){
-      feedbackText.innerHTML = str;
-    }
-
-    var prevCounterType = 'excellent';
-    function animatePointsCounter(str, type){
-      pointsCounter.classList.remove(prevCounterType);
-      pointsCounter.classList.add('bounceIn');
-      pointsCounter.classList.add(type);
-      pointsCounter.innerHTML = str;
-      setTimeout(function(){
-        pointsCounter.classList.remove('bounceIn');
-        prevCounterType = type;
+    function animatePointsCounter(str, elem) {
+      elem.classList.add('bounceIn');
+      elem.innerHTML = str;
+      setTimeout(function() {
+        elem.classList.remove('bounceIn');
       }, 500);
     }
 
-    var changeInstrument = function(key){
-      if(selectedInstrument != undefined){
-         selectedInstrument.classList.remove('active');
-         selectedInstrument.classList.remove('animated');
-         selectedInstrument.classList.remove('wobble');
+    var resetPoints = function() {
+      for (var i = 0; i < players.length; i++) {
+        players[i].points.innerHTML = 0;
+        players[i].winner.style['display'] = 'none';
       }
-      selectedInstrument = document.getElementById(keyInstrument[key]);
-      selectedInstrument.classList.add('active');
-      selectedInstrument.classList.add('animated');
-      selectedInstrument.classList.add('wobble');
     }
 
-    var resetPoints = function(){
-      userPoints = 0;
-      totalPoints.innerHTML = userPoints;
+    var callWinner = function(){
+      var min = 0;
+      var player = {};
+
+      for (var i = 0; i < players.length; i++) {
+        var points = Number(players[i].points.innerHTML);
+        if(points > min){
+          min = points;
+          player = players[i];
+        }
+      }
+
+      console.log(min);
+      console.log(player);
+
+      if(min > 0){
+        player.winner.style['display'] = 'block';
+      }
     }
 
     /**
      * Activated when a Fruit is correctly hit
      */
-    var fruitHit = function(fruit){
-      setFeedback('Muy bien!');
-      fruit.hit = true;
-      fruit.elem.style['opacity'] = 0.5;
-      animatePointsCounter('+1', 'excellent');
-      totalPoints.innerHTML = ++userPoints;
+    var fruitHit = function(fruit, points, player) {
+      animatePointsCounter('+1', points);
+      players[player].points.innerHTML = Number(players[player].points.innerHTML) + 1;
     }
 
     /**
      * Activated when a fruit was missed
      */
-    var fruitMissed = function(fruit){
-      setFeedback('Se escapó ' + fruit.tone + '!');
-      animatePointsCounter('0', 'bad');
+    var fruitMissed = function(fruit, points) {
+      animatePointsCounter('0', points);
     }
 
 
     /**
      * Activated when a note is played but no fruit is hit
      */
-    var toneFailed = function(note){
+    var toneFailed = function(note) {
       // do nothing
     }
 
 
     /** Interface for the TouchController **/
-    global.NotificationsService = {
-      changeInstrument: changeInstrument
-    }
+    global.NotificationsService = {}
 
 
     /**
@@ -94,8 +83,8 @@
       fruitHit: fruitHit,
       fruitMissed: fruitMissed,
       toneFailed: toneFailed,
-      changeInstrument: changeInstrument,
-      resetPoints: resetPoints
+      resetPoints: resetPoints,
+      callWinner: callWinner
     };
 
   });

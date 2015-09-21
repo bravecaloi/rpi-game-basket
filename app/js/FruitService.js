@@ -1,6 +1,7 @@
 (function() {
   'use strict'
 
+  var FRUIT_ANIMATION_TIME = 6;
   var app = angular.module(GAME_APP_NAME);
 
   app.service('FruitService', function() {
@@ -11,14 +12,10 @@
      */
     var animateFruit = function(fruit, callback){
       fruit.elem.style['-webkit-animation-name'] = 'moveit';
-      fruit.elem.style['-webkit-animation-duration'] = 7 + 's';
+      fruit.elem.style['-webkit-animation-duration'] = FRUIT_ANIMATION_TIME + 's';
       fruit.elem.style['display'] = 'block';
 
       fruit.elem.addEventListener('webkitAnimationEnd', function(){
-        callback(fruit);
-      }, false);
-
-      fruit.elem.addEventListener('animationEnd', function(){
         callback(fruit);
       }, false);
     }
@@ -27,44 +24,36 @@
      * Creates a new div .note and appends it
      * to the #song element
      */
-    var createFruit = function(i, tone, time) {
-      // div class="note pos01 apple"
-      var span = document.createElement('span');
-      var p = document.createElement('p');
+    var createFruit = function(index, delay, column) {
+      // <div class="fruit"></div>
       var elem = document.createElement('div');
+      elem.id = column.id + 'fruit' + index;
+      elem.className = 'animated-fruit fruit';
 
-      p.innerHTML = tone;
-      elem.id = 'fruit' + i;
-      elem.className = 'animated-fruit note ' + (i % 2 ? 'pos01 ' : 'pos02 ') + FRUITS[tone];
-
-      elem.appendChild(span);
-      elem.appendChild(p);
-      document.getElementById('song').appendChild(elem);
+      column.appendChild(elem);
 
       return {
-        'tone': tone,
-        'elem': elem,
-        'hit': false,
-        'delay': time
+        'elem':   elem,
+        'column': column,
+        'hit':    false,
+        'delay':  delay
       }
     };
-
-    //The threashold is a fixed area
-    var threshold = document.getElementById('threashold').getBoundingClientRect();
 
     /**
      * Verifies if an element is overlapping with
      * the threashold
      */
-    var overlapsThreshold = function(elem) {
-      var elemPos = elem.getBoundingClientRect();
+    var overlapsThreshold = function(elem1, elem2) {
+      var fruit = elem1.getBoundingClientRect();
+      var threshold = elem2.getBoundingClientRect();
 
       // If some is false, then there is no overlapping
       return !(
-        threshold.top > elemPos.bottom ||
-        threshold.right < elemPos.left ||
-        threshold.bottom < elemPos.top ||
-        threshold.left > elemPos.right
+        threshold.top > fruit.bottom ||
+        threshold.right < fruit.left ||
+        threshold.bottom < fruit.top ||
+        threshold.left > fruit.right
       );
     }
 

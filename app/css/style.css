@@ -231,21 +231,21 @@ body {
   transform: scale(0.666667, 0.6666667);
   transform-origin: 0 0;
 }
-#main .win_player01 {
+#main #win_player01 {
   width: 100%;
   height: 100%;
   background: url(../images/ganaste01.png) 70px 70px no-repeat rgba(0, 0, 0, 0.6);
   z-index: 100000;
   position: absolute;
-  visibility: hidden;
+  display: none;
 }
-#main .win_player02 {
+#main #win_player02 {
   width: 100%;
   height: 100%;
   background: url(../images/ganaste02.png) 950px 70px no-repeat rgba(0, 0, 0, 0.6);
   z-index: 100001;
   position: absolute;
-  visibility: hidden;
+  display: none;
 }
 #main .col_player {
   width: 50%;
@@ -360,6 +360,25 @@ body {
   left: 0;
   background-position: center !important;
 }
+
+.animated-fruit {
+  display: none;
+  -webkit-animation-timing-function: linear;
+  /*-webkit-animation-direction: reverse;*/
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+}
+@-webkit-keyframes moveit {
+  0% {
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(1000px);
+  }
+}
+
+
+
 #main .col_player .col_game .col01 .fruit {
   background: url(../images/apple.png) no-repeat;
 }
