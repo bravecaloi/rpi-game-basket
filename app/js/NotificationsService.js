@@ -41,6 +41,7 @@
       }
       if (min > 0) {
         player.winner.style['display'] = 'block';
+        document.getElementById('press_start').style['display'] = 'block';
       }
     }
 
@@ -51,10 +52,10 @@
       animatePointsCounter('+1', points);
       players[player].points.innerHTML = Number(players[player].points.innerHTML) + 1;
 
-      if(points.watcher != undefined){
+      if (points.watcher != undefined) {
         clearTimeout(points.watcher);
       }
-      points.watcher = setTimeout(function(){
+      points.watcher = setTimeout(function() {
         points.innerHTML = '';
       }, 1000);
     }
@@ -99,14 +100,15 @@
           case 'p':
             global.GameController.checkFruitsPosition(baskets.indexOf(keychar));
             break;
-
           case 'a':
             global.GameController.addFruit();
             break;
           case 's':
             global.GameController.removeFruit();
             break;
-
+          case 'v':
+            global.GameController.loopSpeed();
+            break;
           case 'g':
             global.GameController.startSong();
             break;

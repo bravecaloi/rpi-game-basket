@@ -1,7 +1,7 @@
 (function() {
   'use strict'
 
-  var DELAY_UNIT_TIME = 1000;
+  var DELAY_UNIT_TIME = 500;
   var PLAYERS_NUMEBR = 2;
   var COLUMNS_PER_PLAYER = 4
   var PLAYER_0 = 0;
@@ -12,7 +12,9 @@
   app.controller('GameMechanicsController', function($scope, $timeout, FruitService, NotificationsService) {
     var ctrl = this;
 
-    $scope.fruitsPerPlayer = 20;
+    // Default values
+    $scope.fruitsPerPlayer = 3;
+    $scope.fruitsSpeed = 2;
 
     var columns = [];
 
@@ -42,9 +44,9 @@
     var animateSquenceFruits = function(fruit){
       $timeout(function(mFruit) {
         return function() {
-          FruitService.animateFruit(mFruit, fruitAnimationEnds);
+          FruitService.animateFruit(mFruit, $scope.fruitsSpeed, fruitAnimationEnds);
         };
-      }(fruit), fruit.delay * DELAY_UNIT_TIME);
+      }(fruit), fruit.delay * ($scope.fruitsSpeed * 150));
     }
 
     var createAllFruits = function() {
@@ -77,9 +79,10 @@
     }
 
     var startSong = function() {
+      document.getElementById('press_start').style['display'] = 'none';
       resetGame();
-      createAllFruits();
       countGameEnds = 0;
+      createAllFruits();
     }
 
     var checkFruitsPosition = function(column) {
@@ -129,12 +132,22 @@
       $scope.$apply();
     }
 
+    var loopSpeed = function(){
+      if($scope.fruitsSpeed == 10){
+        $scope.fruitsSpeed = 1
+      }else{
+        $scope.fruitsSpeed++;
+      }
+      $scope.$apply();
+    }
+
     /** Interface for the TouchController **/
     global.GameController = {
       startSong: startSong,
       checkFruitsPosition: checkFruitsPosition,
       addFruit: addFruit,
-      removeFruit: removeFruit
+      removeFruit: removeFruit,
+      loopSpeed: loopSpeed
     }
 
     prepareElements();

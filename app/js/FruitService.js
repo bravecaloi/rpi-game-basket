@@ -1,7 +1,6 @@
 (function() {
   'use strict'
 
-  var FRUIT_ANIMATION_TIME = 6;
   var app = angular.module(GAME_APP_NAME);
 
   app.service('FruitService', function() {
@@ -9,9 +8,9 @@
     /**
      * Animates a fruit across the screen
      */
-    var animateFruit = function(fruit, callback){
+    var animateFruit = function(fruit, speed, callback){
       fruit.elem.style['-webkit-animation-name'] = 'moveit';
-      fruit.elem.style['-webkit-animation-duration'] = FRUIT_ANIMATION_TIME + 's';
+      fruit.elem.style['-webkit-animation-duration'] = speed + 's';
       fruit.elem.style['display'] = 'block';
 
       fruit.elem.addEventListener('webkitAnimationEnd', function(){

@@ -23,7 +23,7 @@ exports.touched = function(req, res) {
       break;
 
     case 10:
-      global.GameController.loopSpeedTime();
+      global.GameController.loopSpeed();
       break;
 
     case 11:
