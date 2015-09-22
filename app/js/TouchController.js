@@ -21,8 +21,11 @@ exports.touched = function(req, res) {
     case 09:
       global.GameController.removeFruit();
       break;
-      
+
     case 10:
+      global.GameController.loopSpeedTime();
+      break;
+
     case 11:
       global.GameController.startSong();
       break;

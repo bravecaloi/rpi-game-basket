@@ -6,7 +6,6 @@
 
   app.service('FruitService', function() {
 
-
     /**
      * Animates a fruit across the screen
      */

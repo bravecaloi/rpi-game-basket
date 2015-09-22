@@ -50,15 +50,22 @@
     var fruitHit = function(fruit, points, player) {
       animatePointsCounter('+1', points);
       players[player].points.innerHTML = Number(players[player].points.innerHTML) + 1;
+
+      if(points.watcher != undefined){
+        clearTimeout(points.watcher);
+      }
+      points.watcher = setTimeout(function(){
+        points.innerHTML = '';
+      }, 1000);
     }
 
     /**
      * Activated when a fruit was missed
      */
     var fruitMissed = function(fruit, points) {
-      animatePointsCounter('0', points);
+      // do nothing
+      // points.innerHTML = '';
     }
-
 
     /**
      * Activated when a note is played but no fruit is hit
