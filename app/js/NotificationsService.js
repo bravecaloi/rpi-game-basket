@@ -28,22 +28,18 @@
       }
     }
 
-    var callWinner = function(){
+    var callWinner = function() {
       var min = 0;
       var player = {};
 
       for (var i = 0; i < players.length; i++) {
         var points = Number(players[i].points.innerHTML);
-        if(points > min){
+        if (points > min) {
           min = points;
           player = players[i];
         }
       }
-
-      console.log(min);
-      console.log(player);
-
-      if(min > 0){
+      if (min > 0) {
         player.winner.style['display'] = 'block';
       }
     }
@@ -76,6 +72,43 @@
     global.NotificationsService = {}
 
 
+    var linkKeyboard = function() {
+      if (global.nwjs == true) return;
+
+      var baskets = 'qweruiop';
+
+      document.onkeypress = function(e) {
+        e = e || window.event;
+        var key = e.keyCode || e.which;
+        var keychar = String.fromCharCode(key);
+        switch (keychar) {
+          case 'q':
+          case 'w':
+          case 'e':
+          case 'r':
+          case 'u':
+          case 'i':
+          case 'o':
+          case 'p':
+            global.GameController.checkFruitsPosition(baskets.indexOf(keychar));
+            break;
+
+          case 'a':
+            global.GameController.addFruit();
+            break;
+          case 's':
+            global.GameController.removeFruit();
+            break;
+
+          case 'g':
+            global.GameController.startSong();
+            break;
+
+          default:
+        }
+      };
+    }
+
     /**
      * Available Methods
      */
@@ -84,7 +117,8 @@
       fruitMissed: fruitMissed,
       toneFailed: toneFailed,
       resetPoints: resetPoints,
-      callWinner: callWinner
+      callWinner: callWinner,
+      linkKeyboard: linkKeyboard
     };
 
   });

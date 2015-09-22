@@ -2,7 +2,6 @@
   'use strict'
 
   var DELAY_UNIT_TIME = 1000;
-  var FRUITS_PER_PLAYER = 3;
   var PLAYERS_NUMEBR = 2;
   var COLUMNS_PER_PLAYER = 4
   var PLAYER_0 = 0;
@@ -13,7 +12,7 @@
   app.controller('GameMechanicsController', function($scope, $timeout, FruitService, NotificationsService) {
     var ctrl = this;
 
-    $scope.fruitsNumber = FRUITS_PER_PLAYER;
+    $scope.fruitsPerPlayer = 20;
 
     var columns = [];
 
@@ -34,34 +33,39 @@
       fruit.elem.style['display'] = 'none';
       countGameEnds++;
 
-      if(countGameEnds == PLAYERS_NUMEBR * FRUITS_PER_PLAYER){
+      if(countGameEnds == PLAYERS_NUMEBR * $scope.fruitsPerPlayer){
         countGameEnds = 0;
         NotificationsService.callWinner();
       }
     }
 
+    var animateSquenceFruits = function(fruit){
+      $timeout(function(mFruit) {
+        return function() {
+          FruitService.animateFruit(mFruit, fruitAnimationEnds);
+        };
+      }(fruit), fruit.delay * DELAY_UNIT_TIME);
+    }
+
     var createAllFruits = function() {
       for (var player = 0; player < PLAYERS_NUMEBR; player++) {
-
-        for (var i = 0; i < FRUITS_PER_PLAYER; i++) {
+        for (var i = 0; i < $scope.fruitsPerPlayer; i++) {
           var column = getRandomColumn(player);
           var fruit = FruitService.createFruit(i, i, column.elem);
           column.fruits.push(fruit);
-
-          $timeout(function(mFruit) {
-            return function() {
-              FruitService.animateFruit(mFruit, fruitAnimationEnds);
-            };
-          }(fruit), fruit.delay * DELAY_UNIT_TIME);
+          animateSquenceFruits(fruit);
         }
-
       }
     }
 
+    /**
+     * Returns a random number between min (inclusive) and max (exclusive)
+     */
     function getRandomColumn(player) {
-      var min = player == PLAYER_0 ? 0 : 3;
-      var max = player == PLAYER_0 ? 4 : 7;
-      return columns[Math.floor(Math.random()*(max-min+1)+min)];
+      var min = player == PLAYER_0 ? 0 : 4;
+      var max = player == PLAYER_0 ? 4 : 8;
+      var col = Math.floor( Math.random() * (max - min) + min );
+      return columns[col];
     }
 
     var resetGame = function() {
@@ -113,17 +117,34 @@
       }, 500);
     }
 
+    var addFruit = function(){
+      $scope.fruitsPerPlayer++;
+      $scope.$apply();
+    }
+
+    var removeFruit = function(){
+      if($scope.fruitsPerPlayer == 1) return;
+      $scope.fruitsPerPlayer--;
+      $scope.$apply();
+    }
+
     /** Interface for the TouchController **/
     global.GameController = {
       startSong: startSong,
-      checkFruitsPosition: checkFruitsPosition
+      checkFruitsPosition: checkFruitsPosition,
+      addFruit: addFruit,
+      removeFruit: removeFruit
     }
 
     prepareElements();
+    NotificationsService.linkKeyboard();
+
 
     return {
       startSong: startSong,
-      checkFruitsPosition: checkFruitsPosition
+      checkFruitsPosition: checkFruitsPosition,
+      addFruit: addFruit,
+      removeFruit: removeFruit
     }
   });
 
