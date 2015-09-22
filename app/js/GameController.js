@@ -79,6 +79,7 @@
     var startSong = function() {
       resetGame();
       createAllFruits();
+      countGameEnds = 0;
     }
 
     var checkFruitsPosition = function(column) {
