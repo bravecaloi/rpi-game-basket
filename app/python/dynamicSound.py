@@ -59,18 +59,18 @@ AUDIO_MUSIC_PATH_0 = '/home/pi/rpi-game-basket/app/audio'
 # tons more sounds are available in / and
 # /usr/share/scratch/Media/Sounds/
 SOUND_MAPPING_0 = {
-  0:  AUDIO_MUSIC_TYPE_0 + '/p1.wav',
-  1:  AUDIO_MUSIC_TYPE_0 + '/p1.wav',
-  2:  AUDIO_MUSIC_TYPE_0 + '/p1.wav',
-  3:  AUDIO_MUSIC_TYPE_0 + '/p1.wav',
-  4:  AUDIO_MUSIC_TYPE_0 + '/p2.wav',
-  5:  AUDIO_MUSIC_TYPE_0 + '/p2.wav',
-  6:  AUDIO_MUSIC_TYPE_0 + '/p2.wav',
-  7:  AUDIO_MUSIC_TYPE_0 + '/p2.wav',
-  8:  AUDIO_MUSIC_TYPE_0 + '/t1.wav',
-  9:  AUDIO_MUSIC_TYPE_0 + '/t1.wav',
-  10:  AUDIO_MUSIC_TYPE_0 + '/t2.wav',
-  11:  AUDIO_MUSIC_TYPE_0 + '/go.wav',
+  0:  AUDIO_MUSIC_PATH_0 + '/p1.wav',
+  1:  AUDIO_MUSIC_PATH_0 + '/p1.wav',
+  2:  AUDIO_MUSIC_PATH_0 + '/p1.wav',
+  3:  AUDIO_MUSIC_PATH_0 + '/p1.wav',
+  4:  AUDIO_MUSIC_PATH_0 + '/p2.wav',
+  5:  AUDIO_MUSIC_PATH_0 + '/p2.wav',
+  6:  AUDIO_MUSIC_PATH_0 + '/p2.wav',
+  7:  AUDIO_MUSIC_PATH_0 + '/p2.wav',
+  8:  AUDIO_MUSIC_PATH_0 + '/t1.wav',
+  9:  AUDIO_MUSIC_PATH_0 + '/t1.wav',
+  10:  AUDIO_MUSIC_PATH_0 + '/t2.wav',
+  11:  AUDIO_MUSIC_PATH_0 + '/go.wav',
 }
 sounds_0 = [0,0,0,0,0,0,0,0,0,0,0,0]
 
