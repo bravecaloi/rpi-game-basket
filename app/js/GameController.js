@@ -80,6 +80,7 @@
 
     var startSong = function() {
       document.getElementById('press_start').style['display'] = 'none';
+      document.getElementById('tie_players').style['display'] = 'none';
       resetGame();
       countGameEnds = 0;
       createAllFruits();

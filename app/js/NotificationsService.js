@@ -41,8 +41,10 @@
       }
       if (min > 0) {
         player.winner.style['display'] = 'block';
-        document.getElementById('press_start').style['display'] = 'block';
+      }else{
+        document.getElementById('tie_players').style['display'] = 'block';
       }
+      document.getElementById('press_start').style['display'] = 'block';
     }
 
     /**
