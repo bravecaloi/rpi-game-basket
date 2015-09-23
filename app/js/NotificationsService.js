@@ -3,7 +3,7 @@
 
   var app = angular.module(GAME_APP_NAME);
 
-  app.service('NotificationsService', function() {
+  app.service('NotificationsService', function($rootScope) {
 
     var players = [{
       points: document.getElementById('player0Points'),
@@ -19,6 +19,31 @@
       setTimeout(function() {
         elem.classList.remove('bounceIn');
       }, 500);
+    }
+
+    var startGameCounter = 4;
+    var startGameCounterWatcher = undefined;
+    function showStartGameCounter() {
+      document.getElementById('game_counter').style['display'] = 'block';
+      document.getElementById('win_player01').style['display'] = 'none';
+      document.getElementById('win_player02').style['display'] = 'none';
+      document.getElementById('game_counter').style['display'] = 'block';
+      document.getElementById('game_counter_text').innerHTML = 'Empieza en ' + startGameCounter;
+      if(startGameCounterWatcher != undefined){
+        clearInterval(startGameCounterWatcher);
+      }
+
+      startGameCounterWatcher = setInterval(function(){
+        if (startGameCounter == 0) {
+          startGameCounter = 4;
+          clearInterval(startGameCounterWatcher);
+          document.getElementById('game_counter').style['display'] = 'none';
+          startGameCounterWatcher = undefined;
+          $rootScope.$broadcast('finishStartGameCounter');
+        } else {
+          document.getElementById('game_counter_text').innerHTML = 'Empieza en ' + --startGameCounter;
+        }
+      }, 1000);
     }
 
     var resetPoints = function() {
@@ -41,7 +66,7 @@
       }
       if (min > 0) {
         player.winner.style['display'] = 'block';
-      }else{
+      } else {
         document.getElementById('tie_players').style['display'] = 'block';
       }
       document.getElementById('press_start').style['display'] = 'block';
@@ -129,7 +154,8 @@
       toneFailed: toneFailed,
       resetPoints: resetPoints,
       callWinner: callWinner,
-      linkKeyboard: linkKeyboard
+      linkKeyboard: linkKeyboard,
+      showStartGameCounter: showStartGameCounter
     };
 
   });
