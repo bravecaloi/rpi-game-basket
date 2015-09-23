@@ -1,4 +1,15 @@
 exports.touched = function(req, res) {
+
+  global.watchdog = global.window.WATCHDOG_TIME * 1000;
+
+  if(global.isSplash == true){
+    global.window.location.href = 'app.html';
+    setTimeout(function(){
+      global.GameController.startSong();
+    }, 1000);
+    return;
+  }
+
   var key = Number(req.params.number);
 
   switch (key) {

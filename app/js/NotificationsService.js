@@ -113,6 +113,8 @@
       var baskets = 'qweruiop';
 
       document.onkeypress = function(e) {
+        global.watchdog = WATCHDOG_TIME * 1000;
+
         e = e || window.event;
         var key = e.keyCode || e.which;
         var keychar = String.fromCharCode(key);

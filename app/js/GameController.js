@@ -1,7 +1,3 @@
-
-// var audio = new Audio('music/Scott_Holmes_-_04_-_Childrens_TV.mp3');
-// audio.play();
-
 (function() {
   'use strict'
 
@@ -17,8 +13,8 @@
     var ctrl = this;
 
     // Default values
-    $scope.fruitsPerPlayer = 3;
-    $scope.fruitsSpeed = 2;
+    $scope.fruitsPerPlayer = 20;
+    $scope.fruitsSpeed = 4;
 
     var columns = [];
 
@@ -151,6 +147,17 @@
       $scope.$apply();
     }
 
+    var checkNoPlay = function(){
+      setInterval(function(){
+        if(global.watchdog < 0){
+          location.href = 'splash.html';
+        }else{
+          global.watchdog = global.watchdog - 5000;
+        }
+      }, 5000);
+
+    }
+
     /** Interface for the TouchController **/
     global.GameController = {
       startSong: startSong,
@@ -160,9 +167,9 @@
       loopSpeed: loopSpeed
     }
 
+    checkNoPlay();
     prepareElements();
     NotificationsService.linkKeyboard();
-
 
     return {
       startSong: startSong,

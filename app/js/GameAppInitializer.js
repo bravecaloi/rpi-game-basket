@@ -1,4 +1,6 @@
 GAME_APP_NAME = 'GameApp';
+WATCHDOG_TIME = 30;
+
 /**
  * Init the angular app
  */

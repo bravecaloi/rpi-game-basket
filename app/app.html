@@ -28,10 +28,9 @@
 		var global = global || { 'nwjs': false };
 
 		if(global.nwjs != false){
-			global.window = window;
-			global.gui = require('nw.gui');
-			game.startServer();
+			global.isSplash = false;
 		}
+		global.watchdog = WATCHDOG_TIME * 1000;
 	</script>
 	<title>Tormenta de Frutas</title>
 </head>
@@ -46,7 +45,7 @@
 
 		<div id="game_counter"><div id="game_counter_text"></div></div>
 
-		<audio autoplay="autoplay">
+		<audio autoplay loop>
 		  <source src="music/Scott_Holmes_-_04_-_Childrens_TV.ogg" />
 		</audio>
 

@@ -15,11 +15,29 @@
 	<link rel="shortcut icon" href="favicon.ico">
 
 	<title>Tormenta de Frutas</title>
+
+	<!-- node.js webserver -->
+	<script src="js/GameServer.js" charset="utf-8"></script>
+	<script>
+		// This enables to run it in a browser or nwjs
+		var global = global || { 'nwjs': false };
+
+		if(global.nwjs != false){
+			global.window = window;
+			global.gui = require('nw.gui');
+			game.startServer();
+			global.isSplash = true;
+		}
+	</script>
+
 </head>
 <body>
-	<a id="splash" href="app.html">
 
-	</a>
+	<!-- <audio autoplay loop>
+		<source src="music/Scott_Holmes_-_04_-_Childrens_TV.ogg" />
+	</audio> -->
+
+	<a id="splash" href="#"></a>
 
 </body>
 </html>
