@@ -1,3 +1,7 @@
+
+// var audio = new Audio('music/Scott_Holmes_-_04_-_Childrens_TV.mp3');
+// audio.play();
+
 (function() {
   'use strict'
 
