@@ -9,7 +9,7 @@
 
   var app = angular.module(GAME_APP_NAME);
 
-  app.controller('GameMechanicsController', function($scope, $timeout, FruitService, NotificationsService) {
+  app.controller('GameMechanicsController', function($scope, $timeout, FruitService, NotificationsService, MusicService) {
     var ctrl = this;
 
     // Default values
@@ -18,30 +18,31 @@
 
     var columns = [];
 
-    var prepareElements = function(){
+    var prepareElements = function() {
       for (var i = 0; i < PLAYERS_NUMEBR * COLUMNS_PER_PLAYER; i++) {
         columns.push({
-          elem:   document.getElementById('column' + i ),
-          points: document.getElementById('column' + i +'Points'),
-          basket: document.getElementById('column' + i +'Basket'),
+          elem: document.getElementById('column' + i),
+          points: document.getElementById('column' + i + 'Points'),
+          basket: document.getElementById('column' + i + 'Basket'),
           fruits: []
         });
       }
     }
 
-    var countGameEnds = 0;
+    var counterFruitsOut = 0;
     var fruitAnimationEnds = function(fruit) {
       fruit.elem.style.webkitAnimationName = '';
       fruit.elem.style['display'] = 'none';
-      countGameEnds++;
+      counterFruitsOut++;
 
-      if(countGameEnds == PLAYERS_NUMEBR * $scope.fruitsPerPlayer){
-        countGameEnds = 0;
+      if (counterFruitsOut == PLAYERS_NUMEBR * $scope.fruitsPerPlayer) {
+        counterFruitsOut = 0;
         NotificationsService.callWinner();
+        MusicService.fadeOut();
       }
     }
 
-    var animateSquenceFruits = function(fruit){
+    var animateSquenceFruits = function(fruit) {
       $timeout(function(mFruit) {
         return function() {
           FruitService.animateFruit(mFruit, $scope.fruitsSpeed, fruitAnimationEnds);
@@ -66,11 +67,12 @@
     function getRandomColumn(player) {
       var min = player == PLAYER_0 ? 0 : 4;
       var max = player == PLAYER_0 ? 4 : 8;
-      var col = Math.floor( Math.random() * (max - min) + min );
+      var col = Math.floor(Math.random() * (max - min) + min);
       return columns[col];
     }
 
     var resetGame = function() {
+      counterFruitsOut = 0;
       for (var i = 0; i < columns.length; i++) {
         columns[i].elem.innerHTML = '';
         columns[i].fruits = [];
@@ -78,17 +80,19 @@
       NotificationsService.resetPoints();
     }
 
+
+
     var startSong = function() {
       document.getElementById('press_start').style['display'] = 'none';
       document.getElementById('tie_players').style['display'] = 'none';
 
       NotificationsService.showStartGameCounter();
 
-      $scope.$on('finishStartGameCounter', function () {
+      $scope.$on('finishStartGameCounter', function() {
+        MusicService.fadeIn();
         resetGame();
-        countGameEnds = 0;
         createAllFruits();
-      })
+      });
     }
 
     var checkFruitsPosition = function(column) {
@@ -103,7 +107,7 @@
 
         if (fruit.hit == false && FruitService.overlapsThreshold(fruit.elem, basket)) {
           fruit.hit = true;
-          countGameEnds++;
+          counterFruitsOut++;
           fruit.elem.style['display'] = 'none';
           NotificationsService.fruitHit(fruit, points, getPlayer(column));
           animateElementOnce(basket, 'active');
@@ -113,8 +117,8 @@
       NotificationsService.toneFailed(fruit, points);
     }
 
-    function getPlayer(column){
-      if(column < 4){
+    function getPlayer(column) {
+      if (column < 4) {
         return PLAYER_0;
       }
       return PLAYER_1;
@@ -127,35 +131,24 @@
       }, 500);
     }
 
-    var addFruit = function(){
+    var addFruit = function() {
       $scope.fruitsPerPlayer++;
       $scope.$apply();
     }
 
-    var removeFruit = function(){
-      if($scope.fruitsPerPlayer == 1) return;
+    var removeFruit = function() {
+      if ($scope.fruitsPerPlayer == 1) return;
       $scope.fruitsPerPlayer--;
       $scope.$apply();
     }
 
-    var loopSpeed = function(){
-      if($scope.fruitsSpeed == 10){
+    var loopSpeed = function() {
+      if ($scope.fruitsSpeed == 10) {
         $scope.fruitsSpeed = 1
-      }else{
+      } else {
         $scope.fruitsSpeed++;
       }
       $scope.$apply();
-    }
-
-    var checkNoPlay = function(){
-      setInterval(function(){
-        if(global.watchdog < 0){
-          location.href = 'splash.html';
-        }else{
-          global.watchdog = global.watchdog - 5000;
-        }
-      }, 5000);
-
     }
 
     /** Interface for the TouchController **/
@@ -167,7 +160,6 @@
       loopSpeed: loopSpeed
     }
 
-    checkNoPlay();
     prepareElements();
     NotificationsService.linkKeyboard();
 

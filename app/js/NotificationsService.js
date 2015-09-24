@@ -113,7 +113,11 @@
       var baskets = 'qweruiop';
 
       document.onkeypress = function(e) {
-        global.watchdog = WATCHDOG_TIME * 1000;
+        global.Watchdog.refresh();
+
+        if(global.isSplash){
+          global.Watchdog.hideSplash();
+        }
 
         e = e || window.event;
         var key = e.keyCode || e.which;

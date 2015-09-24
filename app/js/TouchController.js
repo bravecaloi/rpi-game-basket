@@ -1,9 +1,9 @@
 exports.touched = function(req, res) {
 
-  global.watchdog = global.window.WATCHDOG_TIME * 1000;
+  global.Watchdog.refresh();
 
   if(global.isSplash == true){
-    global.window.location.href = 'app.html';
+    global.Watchdog.hideSplash();
     return;
   }
 

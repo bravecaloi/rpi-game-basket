@@ -1,6 +1,6 @@
 "use strict";
 
-var game = {
+var TouchServer = {
 
   startServer: function(){
 
@@ -28,6 +28,5 @@ var game = {
     http.createServer(app).listen(app.get('port'), function(err){
       console.log('server created');
     });
-
   }
 };

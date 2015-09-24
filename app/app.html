@@ -14,32 +14,24 @@
 	<!-- libs  -->
 	<script src="lib/angular.min.js" charset="utf-8"></script>
 
+	<!-- node.js webserver -->
+	<script src="js/GameServer.js" charset="utf-8"></script>
+
 	<!-- front-end controllers  -->
 	<script src="js/GameAppInitializer.js" charset="utf-8"></script>
 	<script src="js/GameController.js" charset="utf-8"></script>
+	<script src="js/MusicService.js" charset="utf-8"></script>
 	<script src="js/FruitService.js" charset="utf-8"></script>
 	<script src="js/NotificationsService.js" charset="utf-8"></script>
+	<script src="js/Watchdog.js" charset="utf-8"></script>
 
-
-	<!-- node.js webserver -->
-	<script src="js/GameServer.js" charset="utf-8"></script>
-	<script>
-		// This enables to run it in a browser or nwjs
-		var global = global || { 'nwjs': false };
-
-		if(global.nwjs != false){
-			global.isSplash = false;
-			setTimeout(function(){
-	      global.GameController.startSong();
-	    }, 1000);
-		}
-		global.watchdog = WATCHDOG_TIME * 1000;
-	</script>
 	<title>Tormenta de Frutas</title>
 </head>
 <body ng-controller="GameMechanicsController as mechanics">
 
 	<div id="main">
+
+		<div id="splash"></div>
 
 		<div id="win_player01" class=""></div>
 		<div id="win_player02" class=""></div>
@@ -48,7 +40,7 @@
 
 		<div id="game_counter"><div id="game_counter_text"></div></div>
 
-		<audio autoplay loop>
+		<audio id="gameMusic">
 		  <source src="music/Scott_Holmes_-_04_-_Childrens_TV.ogg" />
 		</audio>
 

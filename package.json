@@ -8,7 +8,7 @@
   "chromium-args" : "--enable-webgl --ignore-gpu-blacklist",
   "single-instance": true,
   "description": "piano game",
-  "main": "app/splash.html",
+  "main": "app/app.html",
   "window": {
     "toolbar": false,
     "frame": true,
