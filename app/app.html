@@ -29,6 +29,9 @@
 
 		if(global.nwjs != false){
 			global.isSplash = false;
+			setTimeout(function(){
+	      global.GameController.startSong();
+	    }, 1000);
 		}
 		global.watchdog = WATCHDOG_TIME * 1000;
 	</script>

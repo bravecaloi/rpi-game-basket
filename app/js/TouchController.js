@@ -4,9 +4,6 @@ exports.touched = function(req, res) {
 
   if(global.isSplash == true){
     global.window.location.href = 'app.html';
-    setTimeout(function(){
-      global.GameController.startSong();
-    }, 1000);
     return;
   }
 
