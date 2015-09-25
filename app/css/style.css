@@ -339,14 +339,15 @@ body {
   text-align: center;
 }
 #main .col_player .col_info .full_score span {
-  -webkit-border-radius: 45px;
-  -moz-border-radius: 45px;
-  border-radius: 45px;
+  border-radius: 50%;
   background-color: #ef0000;
-  font-size: 18px;
+  font-size: 48px;
   color: #fff;
-  padding: 0 10px;
-  line-height: 42px;
+  text-align: center;
+  width: 150px;
+  height: 150px;
+  line-height: 72px;
+  padding-top: 40px;
   display: inline-block;
 }
 #main .col_player .col_info .full_score strong {
@@ -508,7 +509,7 @@ body {
 }
 #main footer {
   z-index: 1000;
-  background: url(../images/woodtop.png) bottom left no-repeat;
+  /*background: url(../images/woodtop.png) bottom left no-repeat;*/
   position: absolute;
   bottom: 0;
   left: 0;
@@ -539,8 +540,9 @@ body {
   height: 100%;
   min-height: 200px;
   text-align: center;
-  font-size: 22px;
-  text-shadow: 2px 2px 5px rgba(50, 50, 50, 0.9);
+  font-size: 52px;
+  top: -50px;
+  /*text-shadow: 2px 2px 5px rgba(50, 50, 50, 0.9);*/
 }
 #main footer .col_game .col01 {
   color: #ff0000;
