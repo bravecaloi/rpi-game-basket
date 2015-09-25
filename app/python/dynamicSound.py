@@ -63,12 +63,12 @@ SOUND_MAPPING_0 = {
   1:  AUDIO_MUSIC_PATH_0 + '/p1.wav',
   2:  AUDIO_MUSIC_PATH_0 + '/p1.wav',
   3:  AUDIO_MUSIC_PATH_0 + '/p1.wav',
-  4:  AUDIO_MUSIC_PATH_0 + '/p2.wav',
-  5:  AUDIO_MUSIC_PATH_0 + '/p2.wav',
-  6:  AUDIO_MUSIC_PATH_0 + '/p2.wav',
-  7:  AUDIO_MUSIC_PATH_0 + '/p2.wav',
-  8:  AUDIO_MUSIC_PATH_0 + '/t1.wav',
-  9:  AUDIO_MUSIC_PATH_0 + '/t1.wav',
+  4:  AUDIO_MUSIC_PATH_0 + '/p1.wav',
+  5:  AUDIO_MUSIC_PATH_0 + '/p1.wav',
+  6:  AUDIO_MUSIC_PATH_0 + '/p1.wav',
+  7:  AUDIO_MUSIC_PATH_0 + '/p1.wav',
+  8:  AUDIO_MUSIC_PATH_0 + '/t2.wav',
+  9:  AUDIO_MUSIC_PATH_0 + '/t2.wav',
   10:  AUDIO_MUSIC_PATH_0 + '/t2.wav',
   11:  AUDIO_MUSIC_PATH_0 + '/go.wav',
 }
@@ -76,7 +76,7 @@ sounds_0 = [0,0,0,0,0,0,0,0,0,0,0,0]
 
 for key,soundfile in SOUND_MAPPING_0.iteritems():
         sounds_0[key] =  pygame.mixer.Sound(soundfile)
-        sounds_0[key].set_volume(1);
+        sounds_0[key].set_volume(5);
 
 
 
@@ -99,12 +99,12 @@ while True:
         # First check if transitioned from not touched to touched.
         if current_touched & pin_bit and not last_touched & pin_bit:
             from random import randint
-            print soundtype
+            # print soundtype
             sounds_0[i].play()
             urllib2.urlopen('http://'  + serverIP  + '/touched/' +  format(i))
         # Next check if transitioned from touched to not touched.
         if not current_touched & pin_bit and last_touched & pin_bit:
-             print '{0} released!'.format(i)
+            print '{0} released!'.format(i)
     # Update last state and wait a short period before repeating.
     last_touched = current_touched
     time.sleep(0.1)

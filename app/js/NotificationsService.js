@@ -21,7 +21,7 @@
       }, 500);
     }
 
-    var startGameCounter = 4;
+    var startGameCounter = 3;
     var startGameCounterWatcher = undefined;
     function showStartGameCounter() {
       document.getElementById('game_counter').style['display'] = 'block';
@@ -35,7 +35,7 @@
 
       startGameCounterWatcher = setInterval(function(){
         if (startGameCounter == 0) {
-          startGameCounter = 4;
+          startGameCounter = 3;
           clearInterval(startGameCounterWatcher);
           document.getElementById('game_counter').style['display'] = 'none';
           startGameCounterWatcher = undefined;

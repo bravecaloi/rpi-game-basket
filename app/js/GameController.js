@@ -107,8 +107,7 @@
 
         if (fruit.hit == false && FruitService.overlapsThreshold(fruit.elem, basket)) {
           fruit.hit = true;
-          counterFruitsOut++;
-          fruit.elem.style['display'] = 'none';
+          fruit.elem.style['visibility'] = 'hidden';
           NotificationsService.fruitHit(fruit, points, getPlayer(column));
           animateElementOnce(basket, 'active');
           return;
