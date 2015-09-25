@@ -543,8 +543,9 @@ body {
   font-size: 52px;
   top: -50px;
   /*text-shadow: 2px 2px 5px rgba(50, 50, 50, 0.9);*/
+  color: #dce122;
 }
-#main footer .col_game .col01 {
+/*#main footer .col_game .col01 {
   color: #ff0000;
 }
 #main footer .col_game .col02 {
@@ -554,8 +555,8 @@ body {
   color: #ff6600;
 }
 #main footer .col_game .col04 {
-  color: #dce122;
-}
+
+}*/
 #main footer .player02 {
   float: right;
   margin: 110px 200px 0 0px;
