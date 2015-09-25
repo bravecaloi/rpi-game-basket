@@ -108,7 +108,7 @@
 
 
     var linkKeyboard = function() {
-      if (global.nwjs == true) return;
+      // if (global.nwjs == true) return;
 
       var baskets = 'qweruiop';
 
