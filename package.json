@@ -10,9 +10,9 @@
   "description": "piano game",
   "main": "app/app.html",
   "window": {
-    "toolbar": true,
+    "toolbar": false,
     "frame": true,
-    "kiosk": false
+    "kiosk": true
   },
   "scripts": {
     "start": "nodewebkit"
