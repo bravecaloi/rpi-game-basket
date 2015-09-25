@@ -43,7 +43,7 @@
         } else {
           document.getElementById('game_counter_text').innerHTML = 'Empieza en ' + --startGameCounter;
         }
-      }, 1000);
+      }, 600);
     }
 
     var resetPoints = function() {
