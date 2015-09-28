@@ -1,7 +1,6 @@
 (function() {
   'use strict'
 
-  var DELAY_UNIT_TIME = 500;
   var PLAYERS_NUMEBR = 2;
   var COLUMNS_PER_PLAYER = 4
   var PLAYER_0 = 0;
@@ -13,7 +12,7 @@
     var ctrl = this;
 
     // Default values
-    $scope.fruitsPerPlayer = 20;
+    $scope.fruitsPerPlayer = 30;
     $scope.fruitsSpeed = 4;
 
     var columns = [];
