@@ -24,7 +24,6 @@
     var startGameCounter = 3;
     var startGameCounterWatcher = undefined;
     function showStartGameCounter() {
-      document.getElementById('game_counter').style['display'] = 'block';
       document.getElementById('win_player01').style['display'] = 'none';
       document.getElementById('win_player02').style['display'] = 'none';
       document.getElementById('game_counter').style['display'] = 'block';

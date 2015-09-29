@@ -5,7 +5,7 @@
     "url": "https://github.com/bravecaloi/rpi-game-1.git"
   },
   "version": "0.0.1",
-  "chromium-args" : "--enable-webgl --ignore-gpu-blacklist",
+  "chromium-args" : "--disable-gpu",
   "single-instance": true,
   "description": "piano game",
   "main": "app/app.html",
