@@ -46,7 +46,7 @@ if not cap.begin():
 # Also you can specify an optional I2C bus with the bus keyword parameter.
 #cap.begin(bus=1)
 
-pygame.mixer.pre_init(44100, -16, 2, 512)
+pygame.mixer.pre_init(44100, -16, 2, 2048)
 pygame.init()
 
 AUDIO_MUSIC_PATH_0 = '/home/pi/rpi-game-basket/app/audio'
