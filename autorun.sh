@@ -1,6 +1,8 @@
 #!/bin/sh
 
-cd rpi-game-basket
+GAME_PATH=/home/pi/rpi-game-basket
+
+cd $GAME_PATH
 git pull
-nw ../rpi-game-basket &
-sudo python app/python/dynamicSound.sh &
+nw $GAME_PATH &
+sudo python $GAME_PATH/app/python/dynamicSound.py &
