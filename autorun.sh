@@ -1,3 +1,5 @@
+#!/bin/sh
+
 cd rpi-game-basket
 git pull
 nw ../rpi-game-basket &
