@@ -70,7 +70,7 @@ SOUND_MAPPING_0 = {
   8:  AUDIO_MUSIC_PATH_0 + '/t2.wav',
   9:  AUDIO_MUSIC_PATH_0 + '/t2.wav',
   10:  AUDIO_MUSIC_PATH_0 + '/t2.wav',
-  11:  AUDIO_MUSIC_PATH_0 + '/p1.wav',
+  11:  AUDIO_MUSIC_PATH_0 + '/go.wav',
 }
 sounds_0 = [0,0,0,0,0,0,0,0,0,0,0,0]
 
